@@ -146,7 +146,7 @@ export default {
         datacurenta: new Date(),
         nume: '',
         nrchit: '',
-        suma: '0.00',
+        suma: 0.0,
         cui: '111111111',
         localitateSelectata: 1,
       },
@@ -164,18 +164,16 @@ export default {
         alert('Introduceti numele !!!');
         return;
       }
-      const NewInformation = {
-        id: Math.floor(Math.random() * 100000),
-        name: this.name,
-        age: this.age,
-        reminder: this.reminder,
-      };
-      this.$emit('add-information', NewInformation);
+
       console.log(this.form.nume);
       console.log(this.form.nrchit);
       console.log(this.form.localitateSelectata);
       alert(JSON.stringify(this.form));
-      (this.name = ' '), (this.age = ' ');
+      console.log(JSON.stringify(this.form));
+      (this.form.nume = ''),
+        (this.form.nrchit = ''),
+        (this.form.localitateSelectata = 1),
+        (this.form.suma = 0.0);
     },
 
     focusNrChitanta: function (e) {
