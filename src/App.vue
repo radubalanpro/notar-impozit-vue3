@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="https://vuejs.org/images/logo.png" /> -->
-    <ImpozitForm2 />
+    <nav>
+      <router-link to="/" class="btn btn-info">Acasa</router-link> |
+      <router-link to="/about" class="btn btn-warning">Despre</router-link> |
+      <router-link to="/impozit" class="btn btn-danger">Impozit</router-link>
+    </nav>
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
-import ImpozitForm2 from './components/ImpozitForm.vue';
-
-export default {
-  name: 'App',
-  components: {
-    ImpozitForm2,
-  },
-};
+export default {};
 </script>
 
 <style>
@@ -21,8 +21,8 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  /* color: #2c3e50; */
+  text-align: center;
+  color: #2c3e50;
   margin-top: 60px;
 }
 </style>
