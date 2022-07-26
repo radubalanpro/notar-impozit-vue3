@@ -3,17 +3,20 @@
     <div class="card-header">Card header</div>
 
     <div class="card-body">
-      <form @keydown.enter="dontSubmitForm">
+      <form
+        @keydown.enter="dontSubmitForm"
+        class="form-control form-control-sm"
+      >
         <!-- <Datepicker v-model="date" /> -->
 
         <!-- nume si prenume -->
-        <label for="numepren" class="form-label">Nume</label>
-        <div class="mb-3">
+        <label for="numepren" class="form-label form-label-sm">Nume</label>
+        <div class="mb-1">
           <input
             id="numepren"
             v-model="form.nume"
             type="text"
-            class="form-control"
+            class="form-control form-control-sm"
             aria-describedby="numeHelp"
             v-on:keyup.enter="focusNrChitanta"
           />
@@ -21,13 +24,15 @@
         </div>
 
         <!-- numar chitanta -->
-        <label for="numarchitanta" class="form-label">Nr. chitanta</label>
-        <div class="mb-3">
+        <label for="numarchitanta" class="form-label form-label-sm"
+          >Nr. chitanta</label
+        >
+        <div class="mb-1">
           <input
             id="numarchitanta"
             v-model="form.nrchit"
             type="text"
-            class="form-control"
+            class="form-control form-control-sm"
             aria-describedby="chitHelp"
             v-on:keyup.enter="focusSuma"
             @focus.native="$event.target.select()"
@@ -38,8 +43,8 @@
         </div>
 
         <!-- suma -->
-        <label for="sumachitanta" class="form-label">Suma</label>
-        <div class="mb-3">
+        <label for="sumachitanta" class="form-label form-label-sm">Suma</label>
+        <div class="mb-1">
           <input
             id="sumachitanta"
             v-model="form.suma"
@@ -47,7 +52,7 @@
             type="number"
             step="0.01"
             min="0"
-            class="form-control"
+            class="form-control form-control-sm"
             aria-describedby="sumachitHelp"
             v-on:keyup.enter="focusLocalitateImpozit"
             @focus.native="$event.target.select()"
@@ -56,10 +61,10 @@
         </div>
 
         <!-- selector locaitati -->
-        <div class="mb-3">
+        <div class="mb-1">
           <select
             v-model="form.localitateSelectata"
-            class="form-control"
+            class="form-control form-control-sm"
             name="localitateImpozit"
             id="localitateImpozit"
             aria-describedby="localitateHelp"
@@ -78,26 +83,26 @@
           <div id="localitateHelp" class="form-text">
             Localitatea unde se plateste impozitul
           </div>
-          <div class="mt-3">
+          <div class="mt-1">
             Selectie curenta: <strong> {{ form.localitateSelectata }} </strong>
           </div>
         </div>
 
         <!-- cod fiscal -->
-        <label for="codfiscal" class="form-label">CUI</label>
-        <div class="mb-3">
+        <label for="codfiscal" class="form-label form-label-sm">CUI</label>
+        <div class="mb-1">
           <input
             id="codfiscal"
             v-model="form.cui"
             type="text"
-            class="form-control"
+            class="form-control form-control-sm"
             aria-describedby="cuiHelp"
             disabled
           />
           <div id="cuiHelp" class="form-text">CUI localitate selectata</div>
         </div>
 
-        <div class="mb-3 text-center">
+        <div class="mb-1 text-center">
           <button class="btn btn-dark text-center" v-on:click="salvare">
             Salvare date
           </button>
