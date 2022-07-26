@@ -1,101 +1,108 @@
 <template>
-  <div id="impozit">
-    <form @keydown.enter="dontSubmitForm">
-      <!-- <Datepicker v-model="date" /> -->
+  <div id="impozit" class="card">
+    <div class="card-header">Card header</div>
 
-      <!-- nume si prenume -->
-      <label for="numepren" class="form-label">Nume</label>
-      <div class="mb-3">
-        <input
-          id="numepren"
-          v-model="form.nume"
-          type="text"
-          class="form-control"
-          aria-describedby="numeHelp"
-          v-on:keyup.enter="focusNrChitanta"
-        />
-        <div id="numeHelp" class="form-text">Nume si prenume</div>
-      </div>
+    <div class="card-body">
+      <form @keydown.enter="dontSubmitForm">
+        <!-- <Datepicker v-model="date" /> -->
 
-      <!-- numar chitanta -->
-      <label for="numarchitanta" class="form-label">Nr. chitanta</label>
-      <div class="mb-3">
-        <input
-          id="numarchitanta"
-          v-model="form.nrchit"
-          type="text"
-          class="form-control"
-          aria-describedby="chitHelp"
-          v-on:keyup.enter="focusSuma"
-        />
-        <div id="chitHelp" class="form-text">Numarul chitantei de impozit</div>
-      </div>
-
-      <!-- suma -->
-      <label for="sumachitanta" class="form-label">Suma</label>
-      <div class="mb-3">
-        <input
-          id="sumachitanta"
-          v-model="form.suma"
-          inputmode="decimal"
-          type="number"
-          step="0.01"
-          min="0"
-          class="form-control"
-          aria-describedby="sumachitHelp"
-          v-on:keyup.enter="focusLocalitateImpozit"
-        />
-        <div id="sumachitHelp" class="form-text">Suma platita</div>
-      </div>
-
-      <!-- selector locaitati -->
-      <div class="mb-3">
-        <select
-          v-model="form.localitateSelectata"
-          class="form-control"
-          name="localitateImpozit"
-          id="localitateImpozit"
-          aria-describedby="localitateHelp"
-          v-on:change="onChangeMethod"
-        >
-          <option
-            v-model="localitati"
-            v-bind:key="localitate.numeLocalitate"
-            v-bind:value="localitate.idLocalitate"
-            v-for="localitate in localitati"
-          >
-            {{ localitate.numeLocalitate }}
-          </option>
-          >
-        </select>
-        <div id="localitateHelp" class="form-text">
-          Localitatea unde se plateste impozitul
+        <!-- nume si prenume -->
+        <label for="numepren" class="form-label">Nume</label>
+        <div class="mb-3">
+          <input
+            id="numepren"
+            v-model="form.nume"
+            type="text"
+            class="form-control"
+            aria-describedby="numeHelp"
+            v-on:keyup.enter="focusNrChitanta"
+          />
+          <div id="numeHelp" class="form-text">Nume si prenume</div>
         </div>
-        <div class="mt-3">
-          Selectie curenta: <strong> {{ form.localitateSelectata }} </strong>
+
+        <!-- numar chitanta -->
+        <label for="numarchitanta" class="form-label">Nr. chitanta</label>
+        <div class="mb-3">
+          <input
+            id="numarchitanta"
+            v-model="form.nrchit"
+            type="text"
+            class="form-control"
+            aria-describedby="chitHelp"
+            v-on:keyup.enter="focusSuma"
+            @focus.native="$event.target.select()"
+          />
+          <div id="chitHelp" class="form-text">
+            Numarul chitantei de impozit
+          </div>
         </div>
-      </div>
 
-      <!-- cod fiscal -->
-      <label for="codfiscal" class="form-label">CUI</label>
-      <div class="mb-3">
-        <input
-          id="codfiscal"
-          v-model="form.cui"
-          type="text"
-          class="form-control"
-          aria-describedby="cuiHelp"
-          disabled
-        />
-        <div id="cuiHelp" class="form-text">CUI localitate selectata</div>
-      </div>
+        <!-- suma -->
+        <label for="sumachitanta" class="form-label">Suma</label>
+        <div class="mb-3">
+          <input
+            id="sumachitanta"
+            v-model="form.suma"
+            inputmode="decimal"
+            type="number"
+            step="0.01"
+            min="0"
+            class="form-control"
+            aria-describedby="sumachitHelp"
+            v-on:keyup.enter="focusLocalitateImpozit"
+            @focus.native="$event.target.select()"
+          />
+          <div id="sumachitHelp" class="form-text">Suma platita</div>
+        </div>
 
-      <div class="mb-3 text-center">
-        <button class="btn btn-dark text-center" v-on:click="salvare">
-          Salvare date
-        </button>
-      </div>
-      <!-- <button type="button" class="btn btn-primary">Primary</button>
+        <!-- selector locaitati -->
+        <div class="mb-3">
+          <select
+            v-model="form.localitateSelectata"
+            class="form-control"
+            name="localitateImpozit"
+            id="localitateImpozit"
+            aria-describedby="localitateHelp"
+            v-on:change="onChangeMethod"
+          >
+            <option
+              v-model="localitati"
+              v-bind:key="localitate.numeLocalitate"
+              v-bind:value="localitate.idLocalitate"
+              v-for="localitate in localitati"
+            >
+              {{ localitate.numeLocalitate }}
+            </option>
+            >
+          </select>
+          <div id="localitateHelp" class="form-text">
+            Localitatea unde se plateste impozitul
+          </div>
+          <div class="mt-3">
+            Selectie curenta: <strong> {{ form.localitateSelectata }} </strong>
+          </div>
+        </div>
+
+        <!-- cod fiscal -->
+        <label for="codfiscal" class="form-label">CUI</label>
+        <div class="mb-3">
+          <input
+            id="codfiscal"
+            v-model="form.cui"
+            type="text"
+            class="form-control"
+            aria-describedby="cuiHelp"
+            disabled
+          />
+          <div id="cuiHelp" class="form-text">CUI localitate selectata</div>
+        </div>
+
+        <div class="mb-3 text-center">
+          <button class="btn btn-dark text-center" v-on:click="salvare">
+            Salvare date
+          </button>
+        </div>
+        <!-- <button type="button" class="btn btn-primary">Primary</button>
     <button type="button" class="btn btn-secondary">Secondary</button>
     <button type="button" class="btn btn-success">Success</button>
     <button type="button" class="btn btn-danger">Danger</button>
@@ -103,7 +110,9 @@
     <button type="button" class="btn btn-info">Info</button>
     <button type="button" class="btn btn-light">Light</button>
     <button type="button" class="btn btn-dark">Dark</button> -->
-    </form>
+      </form>
+    </div>
+    <div class="card-footer text-muted">Card footer</div>
   </div>
 </template>
 
